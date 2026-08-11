@@ -43,27 +43,30 @@ class DonasiController extends Controller
 }
 
     public function upload(UploadBuktiRequest $request)
-    {
-        $data = session("donasi_pending");
+{
+    $data = session("donasi_pending");
 
-        if (! $data) {
-            return redirect()->route("donasi.index")->with("error", "Sesi donasi tidak ditemukan, silakan ulangi.");
-        }
+    if (! $data) {
+        return redirect()->route("donasi.index")->with("error", "Sesi donasi tidak ditemukan, silakan ulangi.");
+    }
 
-        $path = $request->file("bukti_pembayaran")->store("bukti-donasi", "public");
+    $path = $request->file("bukti_pembayaran")->store("bukti-donasi", "public");
 
-        $donasi = Donasi::create([
-            "kode_transaksi" => $this->generateKodeTransaksi(),
-            "jenis_donasi_id" => $data["jenis_donasi_id"],
-            "nama" => $data["nama"],
-            "whatsapp" => $data["whatsapp"],
-            "email" => $data["email"] ?? null,
-            "nominal" => $data["nominal"],
-            "pesan" => $data["pesan"] ?? null,
-            "tanggal" => $data["tanggal"],
-            "bukti_pembayaran" => $path,
-            "status" => "menunggu_verifikasi",
-        ]);
+    $jenisDonasi = JenisDonasi::find($data["jenis_donasi_id"]);
+
+    $donasi = Donasi::create([
+        "kode_transaksi" => $this->generateKodeTransaksi(),
+        "jenis_donasi_id" => $data["jenis_donasi_id"],
+        "nama_jenis_donasi_snapshot" => $jenisDonasi->nama ?? null,
+        "nama" => $data["nama"],
+        "whatsapp" => $data["whatsapp"],
+        "email" => $data["email"] ?? null,
+        "nominal" => $data["nominal"],
+        "pesan" => $data["pesan"] ?? null,
+        "tanggal" => $data["tanggal"],
+        "bukti_pembayaran" => $path,
+        "status" => "menunggu_verifikasi",
+    ]);
 
         session()->forget("donasi_pending");
 

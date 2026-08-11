@@ -24,7 +24,7 @@
                         <h6 class="fw-bold mb-3"><i class="bi bi-receipt"></i> Detail Transaksi</h6>
                         <div class="row mb-2"><div class="col-5 text-muted">Kode</div><div class="col-7 fw-bold">{{ $data->kode_transaksi }}</div></div>
                         <div class="row mb-2"><div class="col-5 text-muted">Nama</div><div class="col-7">{{ $data->nama }}</div></div>
-                        <div class="row mb-2"><div class="col-5 text-muted">Jenis</div><div class="col-7">{{ $tipe === 'donasi' ? $data->jenisDonasi->nama : $data->paketKurban->nama_paket }}</div></div>
+                        <div class="row mb-2"><div class="col-5 text-muted">Jenis</div><div class="col-7">{{ $tipe === 'donasi' ? ($data->jenisDonasi->nama ?? $data->nama_jenis_donasi_snapshot ?? 'Jenis telah dihapus') : ($data->paketKurban->nama_paket ?? $data->nama_paket_snapshot ?? 'Paket telah dihapus') }}</div></div>
                         <div class="row mb-2"><div class="col-5 text-muted">Tanggal</div><div class="col-7">{{ $data->tanggal->translatedFormat('d F Y') }}</div></div>
                         <div class="row mb-2"><div class="col-5 text-muted">Nominal</div><div class="col-7">Rp {{ number_format($data->nominal, 0, ',', '.') }}</div></div>
                         <div class="row"><div class="col-5 text-muted">Status</div><div class="col-7">

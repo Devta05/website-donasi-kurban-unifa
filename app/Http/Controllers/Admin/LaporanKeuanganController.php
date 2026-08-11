@@ -99,7 +99,7 @@ class LaporanKeuanganController extends Controller
             'waktu_input' => $item->created_at->timezone('Asia/Makassar'),
             'diedit' => false,
             'waktu_edit' => null,
-            'keterangan' => 'Donasi ' . ($item->jenisDonasi->nama ?? '-') . ' - ' . $item->nama,
+            'keterangan' => 'Donasi ' . ($item->jenisDonasi->nama ?? $item->nama_jenis_donasi_snapshot ?? '-') . ' - ' . $item->nama,
             'debet' => (float) $item->nominal,
             'kredit' => 0,
         ];

@@ -12,7 +12,7 @@
             <div class="row mb-2"><div class="col-4 text-muted">Nama</div><div class="col-8">{{ $donasi->nama }}</div></div>
             <div class="row mb-2"><div class="col-4 text-muted">WhatsApp</div><div class="col-8">{{ $donasi->whatsapp }}</div></div>
             <div class="row mb-2"><div class="col-4 text-muted">Email</div><div class="col-8">{{ $donasi->email ?: '-' }}</div></div>
-            <div class="row mb-2"><div class="col-4 text-muted">Jenis Donasi</div><div class="col-8">{{ $donasi->jenisDonasi->nama }}</div></div>
+            <div class="row mb-2"><div class="col-4 text-muted">Jenis Donasi</div><div class="col-8">{{ $donasi->jenisDonasi->nama ?? $donasi->nama_jenis_donasi_snapshot ?? 'Jenis telah dihapus' }}</div></div>
             <div class="row mb-2"><div class="col-4 text-muted">Nominal</div><div class="col-8">Rp {{ number_format($donasi->nominal, 0, ',', '.') }}</div></div>
             <div class="row mb-2"><div class="col-4 text-muted">Tanggal</div><div class="col-8">{{ $donasi->tanggal->format('d/m/Y') }} <span class="text-muted small">({{ $donasi->created_at->timezone('Asia/Makassar')->format('H:i:s') }} WITA)</span></div></div>
             <div class="row mb-2"><div class="col-4 text-muted">Pesan</div><div class="col-8">{{ $donasi->pesan ?: '-' }}</div></div>

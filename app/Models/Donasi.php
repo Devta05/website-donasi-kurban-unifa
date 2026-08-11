@@ -12,8 +12,8 @@ class Donasi extends Model
     protected $table = "donasi";
 
     protected $fillable = [
-        "kode_transaksi", "jenis_donasi_id", "nama", "whatsapp", "email",
-        "nominal", "pesan", "tanggal", "bukti_pembayaran", "status",
+    "kode_transaksi", "jenis_donasi_id", "nama_jenis_donasi_snapshot", "nama", "whatsapp", "email",
+    "nominal", "pesan", "tanggal", "bukti_pembayaran", "status",
     ];
 
     protected function casts(): array

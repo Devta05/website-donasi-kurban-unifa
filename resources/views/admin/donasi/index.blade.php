@@ -37,7 +37,7 @@
                     <tr>
                         <td>{{ $item->kode_transaksi }}</td>
                         <td>{{ $item->nama }}</td>
-                        <td>{{ $item->jenisDonasi->nama }}</td>
+                        <td>{{ $item->jenisDonasi->nama ?? $item->nama_jenis_donasi_snapshot ?? 'Jenis telah dihapus' }}</td>
                         <td>Rp {{ number_format($item->nominal, 0, ',', '.') }}</td>
                         <td>
                             {{ $item->tanggal->format('d/m/Y') }}
