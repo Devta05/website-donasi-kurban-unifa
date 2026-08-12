@@ -39,15 +39,17 @@
 
             <div class="card card-modern p-4">
                 <form action="{{ route('donasi.upload') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Upload Bukti Pembayaran</label>
-                        <input type="file" name="bukti_pembayaran" class="form-control @error('bukti_pembayaran') is-invalid @enderror" accept=".jpg,.jpeg,.png,.pdf" required>
-                        <small class="text-muted">Format: JPG, JPEG, PNG, PDF. Maksimal 2 MB.</small>
-                        @error('bukti_pembayaran') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
-                    </div>
-                    <button type="submit" class="btn btn-brand-green w-100 py-2 fw-semibold">Kirim Bukti Pembayaran <i class="bi bi-upload"></i></button>
-                </form>
+                @csrf
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Upload Bukti Pembayaran</label>
+                    <input type="file" name="bukti_pembayaran" class="form-control @error('bukti_pembayaran') is-invalid @enderror" accept=".jpg,.jpeg,.png,.pdf">
+                    <small class="text-muted">Format: JPG, JPEG, PNG, PDF. Maksimal 2 MB.</small>
+                    @error('bukti_pembayaran')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                </div>
+                <button type="submit" class="btn btn-brand-green w-100 py-2 fw-semibold">Kirim Bukti Pembayaran <i class="bi bi-upload"></i></button>
+             </form>
             </div>
         </div>
     </div>

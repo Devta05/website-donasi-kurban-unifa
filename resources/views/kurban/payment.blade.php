@@ -41,7 +41,7 @@
                     @csrf
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Upload Bukti Pembayaran</label>
-                        <input type="file" name="bukti_pembayaran" class="form-control @error('bukti_pembayaran') is-invalid @enderror" accept=".jpg,.jpeg,.png,.pdf" required>
+                        <input type="file" name="bukti_pembayaran" class="form-control @error('bukti_pembayaran') is-invalid @enderror" accept=".jpg,.jpeg,.png,.pdf">
                         <small class="text-muted">Format: JPG, JPEG, PNG, PDF. Maksimal 2 MB.</small>
                         @error('bukti_pembayaran') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
                     </div>

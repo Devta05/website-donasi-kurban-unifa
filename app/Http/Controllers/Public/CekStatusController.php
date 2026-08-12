@@ -18,6 +18,8 @@ class CekStatusController extends Controller
     {
         $request->validate([
             "kode_transaksi" => ["required", "string"],
+        ], [
+            "kode_transaksi.required" => "Kode transaksi wajib diisi.",
         ]);
 
         $kode = $request->kode_transaksi;
@@ -32,6 +34,8 @@ class CekStatusController extends Controller
             $tipe = "kurban";
         }
 
-        return view("cek-status.index", compact("data", "tipe", "kode"));
+        $sudahDicari = true;
+
+        return view("cek-status.index", compact("data", "tipe", "kode", "sudahDicari"));
     }
 }
