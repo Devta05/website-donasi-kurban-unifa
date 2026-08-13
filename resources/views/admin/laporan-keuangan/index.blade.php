@@ -47,7 +47,7 @@
                     <th>No</th>
                     <th>Tanggal</th>
                     <th>Keterangan</th>
-                    <th>Debet</th>
+                    <th>Debit</th>
                     <th>Kredit</th>
                     <th>Saldo</th>
                     <th>Aksi</th>
