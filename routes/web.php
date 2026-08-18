@@ -22,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LaporanKeuanganController;
 use App\Http\Controllers\Admin\PengeluaranController;
 
+Route::get('/debug/clear-donasi-session', function () {
+    session()->forget('donasi_pending');
+    return 'donasi_pending sudah dihapus. Kembali ke tab upload dan langsung submit (jangan refresh).';
+});
 /*
 |--------------------------------------------------------------------------
 | ROUTE PENGUNJUNG (PUBLIC)

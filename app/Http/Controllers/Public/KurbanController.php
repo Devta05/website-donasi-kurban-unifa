@@ -21,7 +21,12 @@ class KurbanController extends Controller
         })
         ->get();
 
-    $paketKambing = PaketKurban::where('jenis_hewan', 'kambing')->where('is_active', true)->get();
+    $paketKambing = PaketKurban::where('jenis_hewan', 'kambing')
+        ->where('is_active', true)
+        ->whereDoesntHave('kurban', function ($q) {
+            $q->where('status', '!=', 'ditolak');
+        })
+        ->get();
 
     return view('kurban.form', compact('paketSapi', 'paketKambing'));
 }
@@ -51,8 +56,16 @@ class KurbanController extends Controller
                 return back()->withErrors(["slot_sapi_id" => "Slot yang dipilih sudah penuh, silakan pilih slot lain."])->withInput();
             }
         } else {
-            $data["slot_sapi_id"] = null;
-        }
+    $sudahDiambil = Kurban::where('paket_kurban_id', $paket->id)
+        ->where('status', '!=', 'ditolak')
+        ->exists();
+
+    if ($sudahDiambil) {
+        return back()->withErrors(['paket_kurban_id' => 'Paket kambing ini sudah dipilih pendonor lain, silakan pilih paket lain.'])->withInput();
+    }
+
+    $data["slot_sapi_id"] = null;
+}
 
         $data["nominal"] = $paket->harga;
         $data["nama_paket_snapshot"] = $paket->nama_paket;
